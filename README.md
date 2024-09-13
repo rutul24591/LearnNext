@@ -1,36 +1,92 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+NOTES:
 
-## Getting Started
+SERVER SIDE COMPONENTS AND CLIENT SIDE COMPONENTS:
 
-First, run the development server:
+1. By default all components in next js are server side components.
+2. To define a client side component(which is the traditional react component) we have to declare 'use client' at the top of the file.
+3. Client side components cannot function like server side components and won't act and display in route.
+4. Server side components cannot make use of functions that client side component provides like using hooks.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+ROUTING:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. Define a folder called about and within that declard page.tsx ( This convention needs to be followed).
+2. Navigate to localhost:3000/about. The component defined within about/page.tsx get rendered.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+NESTED ROUTING:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. Define a folder called blog and within that declard page.tsx.
+2. Create 2 separate folders within blog folder named first and second respectively.
+3. Create page.tsx within first and second folder.
+4. Now navigate for localhost:3000/blog, localhost:3000/blog/first and localhost:3000/blog/second.
 
-## Learn More
+DYNAMIC ROUTING:
 
-To learn more about Next.js, take a look at the following resources:
+1. Define a folder called products and within that declard page.tsx.
+2. Add following contents within.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```
+   <>
+    <h1>Product Lists</h1>
+    <h2> Product 1</h2>
+    <h2> Product 2</h2>
+    <h2> Product 3</h2>
+   </>
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+   ```
 
-## Deploy on Vercel
+3. Create a new folder within products with the name wrapped as [productId] and within it define page.tsx
+4. Add following content
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   ```import React from 'react';
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+      const ProductDetails = ({ params }: { params: { productId: string } }) => {
+        return (
+          <>
+            <h1>Details about product {params.productId}</h1>
+          </>
+        );
+      };
+
+      export default ProductDetails;
+   ```
+
+5. Now navigate to localhost:3000/products, localhost:3000/products/1 and localhost:3000/1000.
+
+NESTED DYNAMIC ROUTE:
+Please check docs and docs1 folder to completely understand it as it is too verbose to describe here.
+
+CATCH ALL SEGMENTS:
+To be added.
+
+PRIVATE ROUTE:
+
+1. \_nameoffolder indicated private route which next won't serve. (Check \_lib folder for this)
+2. So \_ at start of folder name serves to create private route making it reserve.
+3. To have a folder that starts with an '\_' use %5F instead. (Check %5Flib folder for this)
+
+ROUTE GROUPS:
+
+1. Wrapping a folder name informs next js to tried the route group to exclude from routes url path.
+2. Name will be omitted from url path.
+3. Route groups helps us to organize our code better.
+
+LAYOUTS:
+
+1. A page is UI that is unique to a route.
+2. A layout is UI that is shared between multiple pages in the app.
+3. You can define a layout by default exporting a react component from layout.js or layout.tsx file. This is the mandatory layout.
+4. The component as in 3 should accept a children prop that will be populated with a child page during rendering.
+5. Check layout.tsx file.
+
+NESTED LAYOUTS:
+
+1. Layouts can be nested. It could be specific to product details page. You can define it within the [productId] folder.
+2. Check layout.tsx in products/[productId] folder.
+3. Navigate to localhost:3000/products/100 and check it out.
+
+ROUTE GROUPS LAYOUT:
+
+1. Can apply layouts only to specific components within a route group.
+2. Create a new folder within the (auth) called (with-layout) and add the layout.tsx with contents copied from other layout.tsx from products folder.
+3. Add the register and login folder to this with-layout folder and navigate to localhost:3000/register and localhost:3000/login to see the layout being applied with contents.
+4. localhost:3000/forgot-password won't have the changes for local layout as it falls outside the directory of (with-layout)
