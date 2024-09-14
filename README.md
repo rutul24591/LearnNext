@@ -1,25 +1,25 @@
-NOTES:
+# NOTES:
 
-SERVER SIDE COMPONENTS AND CLIENT SIDE COMPONENTS:
+## SERVER SIDE COMPONENTS AND CLIENT SIDE COMPONENTS:
 
 1. By default all components in next js are server side components.
 2. To define a client side component(which is the traditional react component) we have to declare 'use client' at the top of the file.
 3. Client side components cannot function like server side components and won't act and display in route.
 4. Server side components cannot make use of functions that client side component provides like using hooks.
 
-ROUTING:
+## ROUTING:
 
 1. Define a folder called about and within that declard page.tsx ( This convention needs to be followed).
 2. Navigate to localhost:3000/about. The component defined within about/page.tsx get rendered.
 
-NESTED ROUTING:
+## NESTED ROUTING:
 
 1. Define a folder called blog and within that declard page.tsx.
 2. Create 2 separate folders within blog folder named first and second respectively.
 3. Create page.tsx within first and second folder.
 4. Now navigate for localhost:3000/blog, localhost:3000/blog/first and localhost:3000/blog/second.
 
-DYNAMIC ROUTING:
+## DYNAMIC ROUTING:
 
 1. Define a folder called products and within that declard page.tsx.
 2. Add following contents within.
@@ -52,25 +52,27 @@ DYNAMIC ROUTING:
 
 5. Now navigate to localhost:3000/products, localhost:3000/products/1 and localhost:3000/1000.
 
-NESTED DYNAMIC ROUTE:
+## NESTED DYNAMIC ROUTE:
+
 Please check docs and docs1 folder to completely understand it as it is too verbose to describe here.
 
-CATCH ALL SEGMENTS:
+## CATCH ALL SEGMENTS:
+
 To be added.
 
-PRIVATE ROUTE:
+## PRIVATE ROUTE:
 
 1. \_nameoffolder indicated private route which next won't serve. (Check \_lib folder for this)
 2. So \_ at start of folder name serves to create private route making it reserve.
 3. To have a folder that starts with an '\_' use %5F instead. (Check %5Flib folder for this)
 
-ROUTE GROUPS:
+## ROUTE GROUPS:
 
 1. Wrapping a folder name informs next js to tried the route group to exclude from routes url path.
 2. Name will be omitted from url path.
 3. Route groups helps us to organize our code better.
 
-LAYOUTS:
+## LAYOUTS:
 
 1. A page is UI that is unique to a route.
 2. A layout is UI that is shared between multiple pages in the app.
@@ -78,13 +80,13 @@ LAYOUTS:
 4. The component as in 3 should accept a children prop that will be populated with a child page during rendering.
 5. Check layout.tsx file.
 
-NESTED LAYOUTS:
+## NESTED LAYOUTS:
 
 1. Layouts can be nested. It could be specific to product details page. You can define it within the [productId] folder.
 2. Check layout.tsx in products/[productId] folder.
 3. Navigate to localhost:3000/products/100 and check it out.
 
-ROUTE GROUPS LAYOUT:
+## ROUTE GROUPS LAYOUT:
 
 1. Can apply layouts only to specific components within a route group.
 2. Create a new folder within the (auth) called (with-layout) and add the layout.tsx with contents copied from other layout.tsx from products folder.
